@@ -5,7 +5,7 @@
   vjs.plugin('offset', function(options) {
       var start = options.start, end = options.end;
       if (start >= end || start === undefined || end === undefined) {
-        // Log fuck and go
+        vjs.log.warn("videojs-offset: Invalid start/end parameters.");
       } else {
         var constructor = this.constructor,
             Player = {
