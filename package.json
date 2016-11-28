@@ -1,9 +1,9 @@
 {
   "name": "videojs-offset",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Offset plugin for video.js",
   "license": "Apache-2.0",
-  "main": "./dist/videojs-ttml.js",
+  "main": "./dist/videojs-offset.js",
   "keywords": [
     "videojs",
     "offset"
