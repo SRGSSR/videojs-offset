@@ -91,7 +91,7 @@
             this.initialSeek_ = true;
             this.currentTime(0);
           }
-          if (cT >= this.this.duration()) {
+          if (cT >= this.duration()) {
             this.pause();
             this.trigger('ended');
           }
