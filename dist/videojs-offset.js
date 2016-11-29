@@ -1,4 +1,4 @@
-/*! videojs-offset - v0.2.1 - 2016-11-28*/
+/*! videojs-offset - v0.2.1 - 2016-11-29*/
 (function(window, vjs) {
   'use strict';
 
@@ -21,6 +21,7 @@
         this.offsetDuration_ = (start !== undefined && end !== undefined) ? end - start : undefined;
         this.offsetOn_ = this.offsetDuration_ !== undefined;
         this.initialSeek_ = false;
+        this.ended_ = false;
       };
 
       this.offset = function(start, end) {
@@ -53,11 +54,13 @@
       };
 
       this.duration = function(seconds) {
-        var sD = Player.duration.call(this, seconds);
-        if (this.offsetOn_) {
+        if (this.offsetOn_ && seconds === undefined) {
+          var sD = Player.duration.call(this);
           return (sD < this.endTime_) ? sD - this.startTime_ : this.offsetDuration_;
+        } else if (seconds === undefined) {
+          return Player.duration.call(this);
         } else {
-          return sD;
+          Player.duration.call(this, seconds);
         }
       };
 
@@ -70,30 +73,33 @@
             var cT = Player.currentTime.call(this) - this.startTime_;
             return (cT < 0) ? 0 : cT;
           }
+        } else if (t === undefined) {
+          return Player.currentTime.call(this);
         } else {
-          return Player.currentTime.call(this, t);
+          Player.currentTime.call(this, t);
         }
       };
 
       this.ended = function() {
-        if (this.offsetOn_) {
-          return this.currentTime() >= this.duration() || Player.ended.call(this);
-        } else {
-          return Player.ended.call(this);
-        }
+        return (this.offsetOn_) ? this.ended_ : Player.ended.call(this);
       };
 
       this.on('timeupdate', function() {
         if (this.offsetOn_) {
           var cT = this.currentTime(),
               sT = Player.currentTime.call(this);
-           if (sT < this.startTime_) {
+
+          if (sT < this.startTime_) {
             this.initialSeek_ = true;
             this.currentTime(0);
           }
-          if (cT >= this.duration()) {
+
+          if (cT >= this.offsetDuration_) {
             this.pause();
+            this.ended_ = true;
             this.trigger('ended');
+          } else {
+            this.ended_ = false;
           }
         }
       }.bind(this));
