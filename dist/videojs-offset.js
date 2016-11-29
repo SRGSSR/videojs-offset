@@ -1,4 +1,4 @@
-/*! videojs-offset - v0.2.1 - 2016-11-29*/
+/*! videojs-offset - v0.22 - 2016-11-29*/
 (function(window, vjs) {
   'use strict';
 
