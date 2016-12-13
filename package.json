@@ -1,25 +1,23 @@
 {
-  "name": "videojs-offset",
-  "version": "0.3.0",
-  "description": "Offset plugin for video.js",
-  "license": "Apache-2.0",
-  "main": "./dist/videojs-offset.js",
-  "keywords": [
-    "videojs",
-    "offset"
-  ],
-  "dependencies": {},
-  "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-contrib-clean": "^0.4",
-    "grunt-contrib-concat": "^0.3",
-    "grunt-contrib-jshint": "^0.6",
-    "grunt-contrib-qunit": "^0.2",
-    "grunt-contrib-uglify": "^0.2",
-    "grunt-contrib-watch": "^0.4",
-    "path": "^0.12.7",
-    "qunitjs": "^1.12",
-    "sinon": "1.10.2",
-    "video.js": "^5.8.5"
-  }
+    "name": "videojs-offset",
+    "version": "0.3.0",
+    "description": "Offset plugin for video.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/SRGSSR/videojs-offset.git"
+    },
+    "keywords": ["videojs", "videojs-plugin", "offset"],
+    "author": "SRGSSR",
+    "license": "MIT",
+    "dependencies": {
+        "video.js": "^5.8.5"
+    },
+    "devDependencies": {
+        "grunt": "^1.0.1",
+        "grunt-contrib-clean": "^1.0.0",
+        "grunt-contrib-concat": "^1.0.1",
+        "grunt-contrib-jshint": "^1.1.0",
+        "grunt-contrib-uglify": "^2.0.0",
+        "load-grunt-tasks": "^3.5.2"
+    }
 }

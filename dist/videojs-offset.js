@@ -1,4 +1,4 @@
-/*! videojs-offset - v0.3.0 - 2016-11-30*/
+/*! videojs-offset - v0.3.0 - 2016-12-13*/
 (function(window, vjs) {
   'use strict';
   // Extend Default HTML5 and Flash tech
@@ -95,7 +95,7 @@
             _offset: this.offset_,
 
             start : function(range) {
-              var s = this._buffer.start(range) - this._offset.start
+              var s = this._buffer.start(range) - this._offset.start;
               return (s < 0) ? 0 : s;
             },
             end: function(range) {
