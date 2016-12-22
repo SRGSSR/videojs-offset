@@ -1,4 +1,4 @@
-/*! videojs-offset - v0.3.0 - 2016-12-22*/
+/*! videojs-offset - v0.4.0 - 2016-12-22*/
 (function(window, vjs) {
   'use strict';
   // Extend Default HTML5 and Flash tech
