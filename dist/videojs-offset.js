@@ -1,4 +1,4 @@
-/*! videojs-offset - v0.3.0 - 2016-11-30*/
+/*! videojs-offset - v0.4.0 - 2016-12-22*/
 (function(window, vjs) {
   'use strict';
   // Extend Default HTML5 and Flash tech
@@ -25,12 +25,12 @@
 
   vjs.plugin('offset', function(options) {
       var start = options.start, end = options.end, starttime = options.starttime,
-          constructor = this.constructor,
+          constructor = this,
           Player = {
-            buffered: constructor.prototype.buffered,
-            duration: constructor.prototype.duration,
-            currentTime: constructor.prototype.currentTime,
-            ended: constructor.prototype.ended
+            buffered: constructor.buffered,
+            duration: constructor.duration,
+            currentTime: constructor.currentTime,
+            ended: constructor.ended
           }, isInvalidParams = function(start, end) {
             return start >= end || start === undefined || end === undefined;
           };
@@ -95,7 +95,7 @@
             _offset: this.offset_,
 
             start : function(range) {
-              var s = this._buffer.start(range) - this._offset.start
+              var s = this._buffer.start(range) - this._offset.start;
               return (s < 0) ? 0 : s;
             },
             end: function(range) {
