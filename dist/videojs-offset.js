@@ -1,4 +1,4 @@
-/*! videojs-offset - v0.4.0 - 2017-01-10*/
+/*! videojs-offset - v0.4.0 - 2017-01-26*/
 (function(window, vjs) {
   'use strict';
   // Extend Default HTML5 and Flash tech
@@ -65,12 +65,16 @@
       this.starttime = function(starttime) {
         if (starttime === undefined) {
           return this.starttime_;
-        } else {
-          this.starttime_ = starttime;
         }
+        
+        this.starttime_ = starttime;
 
         if (this.isReady_) {
           this.applyStarttime_();
+        } else {
+          this.one('ready', function() {
+            this.applyStarttime_();
+          });
         }
       };
 
@@ -151,9 +155,5 @@
       }.bind(this));
 
       this.offset(start, end, starttime);
-
-      this.on('ready', function() {
-        this.applyStarttime_();
-      });
   });
 })(window, window.videojs);
