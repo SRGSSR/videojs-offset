@@ -1,4 +1,4 @@
-/*! videojs-offset - v0.4.0 - 2016-12-22*/
+/*! videojs-offset - v0.5.0 - 2017-01-26*/
 (function(window, vjs) {
   'use strict';
   // Extend Default HTML5 and Flash tech
@@ -62,26 +62,30 @@
         }
       };
 
-      this.setStartTime_ = function(starttime) {
+      this.starttime = function(starttime) {
         if (starttime === undefined) {
           return this.starttime_;
-        } else {
-          this.starttime_ = starttime;
         }
+        
+        this.starttime_ = starttime;
 
         if (this.isReady_) {
           this.applyStarttime_();
+        } else {
+          this.one('ready', function() {
+            this.applyStarttime_();
+          });
         }
       };
 
       this.offset = function(start, end, starttime) {
         if (!isInvalidParams(start, end)) {
           this.resetOffset_(start, end);
-          this.setStartTime_((starttime !== undefined) ? starttime : 0);
+          this.starttime((starttime !== undefined) ? starttime : 0);
         } else {
           this.offset_ = undefined;
           if (starttime !== undefined) {
-            this.setStartTime_(starttime);
+            this.starttime(starttime);
           }
         }
       };
@@ -151,9 +155,5 @@
       }.bind(this));
 
       this.offset(start, end, starttime);
-
-      this.on('ready', function() {
-        this.applyStarttime_();
-      });
   });
 })(window, window.videojs);
