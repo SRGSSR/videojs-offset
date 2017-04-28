@@ -1,4 +1,4 @@
-/*! videojs-offset - v0.5.0 - 2017-01-26*/
+/*! videojs-offset - v0.5.0 - 2017-04-28*/
 (function(window, vjs) {
   'use strict';
   // Extend Default HTML5 and Flash tech
@@ -30,7 +30,8 @@
             buffered: constructor.buffered,
             duration: constructor.duration,
             currentTime: constructor.currentTime,
-            ended: constructor.ended
+            ended: constructor.ended,
+            handleTechReady_: constructor.handleTechReady_
           }, isInvalidParams = function(start, end) {
             return start >= end || start === undefined || end === undefined;
           };
@@ -68,14 +69,7 @@
         }
         
         this.starttime_ = starttime;
-
-        if (this.isReady_) {
-          this.applyStarttime_();
-        } else {
-          this.one('ready', function() {
-            this.applyStarttime_();
-          });
-        }
+        this.applyStarttime_();
       };
 
       this.offset = function(start, end, starttime) {
@@ -142,6 +136,11 @@
         return (this.offset_) ? this.offset_.ended : Player.ended.call(this);
       };
 
+      this.handleTechReady_ = function() {
+        this.offset(start, end, starttime);
+        Player.handleTechReady_.call(this);
+      };
+
       this.on('timeupdate', function() {
         if (this.offset_) {
           if (this.currentTime() >= this.offset_.duration) {
@@ -153,7 +152,5 @@
           }
         }
       }.bind(this));
-
-      this.offset(start, end, starttime);
   });
 })(window, window.videojs);
