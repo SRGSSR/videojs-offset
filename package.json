@@ -1,6 +1,6 @@
 {
     "name": "videojs-offset",
-    "version": "0.5.0",
+    "version": "0.5.1",
     "description": "Offset plugin for video.js",
     "repository": {
         "type": "git",
