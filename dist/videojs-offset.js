@@ -1,23 +1,8 @@
-/*! videojs-offset - v0.5.1 - 2017-04-28*/
+/*! videojs-offset - v0.5.1 - 2018-08-03*/
 (function(window, vjs) {
   'use strict';
   // Extend Default HTML5 and Flash tech
-  var Flash = vjs.getComponent('Flash'),
-      Html5 = vjs.getComponent('Html5');
-
-  Flash.prototype.supportsStarttime = function() {
-    return true;
-  };
-
-  Flash.prototype.starttime = function(starttime) {
-    if (starttime !== undefined && starttime > 0) {
-      if (this.seekable().length) {
-        this.setCurrentTime(starttime);
-      } else {
-        setTimeout(this.starttime.bind(this, starttime), 10);
-      }
-    }
-  };
+  var Html5 = vjs.getTech('Html5');
 
   Html5.prototype.supportsStarttime = function() {
     return false;

@@ -6,11 +6,15 @@
         "type": "git",
         "url": "https://github.com/SRGSSR/videojs-offset.git"
     },
-    "keywords": ["videojs", "videojs-plugin", "offset"],
+    "keywords": [
+        "videojs",
+        "videojs-plugin",
+        "offset"
+    ],
     "author": "SRGSSR",
     "license": "MIT",
     "dependencies": {
-        "video.js": "^5.8.5"
+        "video.js": "^5.19.1 || ^6.2.0"
     },
     "devDependencies": {
         "grunt": "^1.0.1",
