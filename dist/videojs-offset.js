@@ -23,7 +23,7 @@
     return false;
   };
 
-  vjs.plugin('offset', function(options) {
+  vjs.registerPlugin('offset', function(options) {
       var start = options.start, end = options.end, starttime = options.starttime,
           constructor = this,
           Player = {
